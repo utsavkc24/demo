@@ -1,6 +1,7 @@
 package com.in28minutes.jpa.hibernate.demo.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import com.in28minutes.jpa.hibernate.demo.DemoApplication;
 import com.in28minutes.jpa.hibernate.demo.entity.Course;
@@ -10,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 @SpringBootTest(classes = DemoApplication.class)
 class CourseRepositoryTest {
@@ -18,10 +20,20 @@ class CourseRepositoryTest {
 	CourseRepository courseRepository;
 
 	@Test
-	void findById_basic() {
+	void contextLoads() {
 		LOGGER.info("Test is running");
+	}
+
+	@Test
+	void findById_basic() {
 		Course course = courseRepository.findById(10001L);
 		assertEquals("History", course.getName());
 	}
 
+	@Test
+	@DirtiesContext
+	void deleteById_basic() {
+		courseRepository.deleteById(10002L);
+		assertNull(courseRepository.findById(10002L));
+	}
 }
