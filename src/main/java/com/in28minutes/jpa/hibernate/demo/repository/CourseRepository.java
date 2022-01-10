@@ -6,8 +6,10 @@ import com.in28minutes.jpa.hibernate.demo.entity.Course;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
+@Transactional
 public class CourseRepository {
 
     @Autowired
@@ -15,5 +17,9 @@ public class CourseRepository {
 
     public Course findById(long id) {
         return entityManager.find(Course.class, id);
+    }
+
+    public void deleteById(long id) {
+        entityManager.remove(findById(id));
     }
 }
