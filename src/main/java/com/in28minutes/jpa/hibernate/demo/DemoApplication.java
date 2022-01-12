@@ -23,8 +23,10 @@ public class DemoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// Course course = courseRepository.findById(10001L);
-		courseRepository.deleteById(10001L);
-		LOGGER.info("Course with id 100001 is being deleted ");
+		// LOGGER.info("Course with id 100001 --> " + course.getName());
+
+		Course course = courseRepository.save(new Course("DSA"));
+		LOGGER.info("Saving course .... " + course.getName());
 	}
 
 }

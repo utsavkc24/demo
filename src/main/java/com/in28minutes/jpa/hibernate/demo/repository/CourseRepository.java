@@ -22,4 +22,13 @@ public class CourseRepository {
     public void deleteById(long id) {
         entityManager.remove(findById(id));
     }
+
+    public Course save(Course course) {
+        if (course.getId() == null) {
+            entityManager.persist(course);
+        } else {
+            entityManager.merge(course);
+        }
+        return course;
+    }
 }
