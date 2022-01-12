@@ -36,4 +36,19 @@ class CourseRepositoryTest {
 		courseRepository.deleteById(10002L);
 		assertNull(courseRepository.findById(10002L));
 	}
+
+	@Test
+	@DirtiesContext
+	void save_basic() {
+		// get a course
+		Course course = courseRepository.findById(10001L);
+
+		// update the course
+		course.setName("History - Updated");
+		courseRepository.save(course);
+
+		// check
+		Course course1 = courseRepository.findById(10001L);
+		assertEquals("History - Updated", course1.getName());
+	}
 }
