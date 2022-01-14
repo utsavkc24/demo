@@ -25,8 +25,10 @@ public class DemoApplication implements CommandLineRunner {
 		// Course course = courseRepository.findById(10001L);
 		// LOGGER.info("Course with id 100001 --> " + course.getName());
 
-		Course course = courseRepository.save(new Course("DSA"));
-		LOGGER.info("Saving course .... " + course.getName());
+		// Course course = courseRepository.save(new Course("DSA"));
+		// LOGGER.info("Saving course .... " + course.getName());
+
+		courseRepository.playWithEntityManager();
 	}
 
 }

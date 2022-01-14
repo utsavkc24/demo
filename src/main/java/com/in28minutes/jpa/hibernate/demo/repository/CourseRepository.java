@@ -31,4 +31,11 @@ public class CourseRepository {
         }
         return course;
     }
+
+    public void playWithEntityManager() {
+        entityManager.persist(new Course("Spring Boot"));
+
+        Course course = findById(10001L);
+        course.setName("History - Updated");
+    }
 }
