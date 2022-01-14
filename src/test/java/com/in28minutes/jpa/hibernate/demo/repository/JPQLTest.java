@@ -1,7 +1,5 @@
 package com.in28minutes.jpa.hibernate.demo.repository;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -30,21 +28,21 @@ class JPQLTest {
 
 	@Test
 	void jpql_basic() {
-		Query query = em.createQuery("select c from Course c");
+		Query query = em.createNamedQuery("get_all_courses");
 		List resultList = query.getResultList();
 		LOGGER.info("select c from Course -> {}", resultList);
 	}
 
 	@Test
 	void jpql_typed() {
-		TypedQuery<Course> query = em.createQuery("select c from Course c", Course.class);
+		TypedQuery<Course> query = em.createNamedQuery("get_all_courses", Course.class);
 		List<Course> resultList = query.getResultList();
 		LOGGER.info("TYPED select c from Course -> {}", resultList);
 	}
 
 	@Test
 	void jpql_where() {
-		TypedQuery<Course> query = em.createQuery("select c from Course c where name = 'History'", Course.class);
+		TypedQuery<Course> query = em.createNamedQuery("get_all_courses_with_where_clause", Course.class);
 		List<Course> resultList = query.getResultList();
 		LOGGER.info("select c from Course c where name = 'History' -> {}", resultList);
 	}

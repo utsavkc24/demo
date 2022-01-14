@@ -8,9 +8,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
+@NamedQueries(value = {
+        @NamedQuery(name = "get_all_courses", query = "select c from Course c"),
+        @NamedQuery(name = "get_all_courses_with_where_clause", query = "select c from Course c where name = 'History'")
+})
 public class Course {
     @Id
     @GeneratedValue
