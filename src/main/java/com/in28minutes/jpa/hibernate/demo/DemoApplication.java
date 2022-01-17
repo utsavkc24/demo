@@ -1,7 +1,7 @@
 package com.in28minutes.jpa.hibernate.demo;
 
-import com.in28minutes.jpa.hibernate.demo.entity.Course;
 import com.in28minutes.jpa.hibernate.demo.repository.CourseRepository;
+import com.in28minutes.jpa.hibernate.demo.repository.StudentRepository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,8 +13,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
 	private Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+
 	@Autowired
 	CourseRepository courseRepository;
+
+	@Autowired
+	StudentRepository studentRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -28,7 +32,9 @@ public class DemoApplication implements CommandLineRunner {
 		// Course course = courseRepository.save(new Course("DSA"));
 		// LOGGER.info("Saving course .... " + course.getName());
 
-		courseRepository.playWithEntityManager();
+		// courseRepository.playWithEntityManager();
+
+		studentRepository.saveStudentWithPassport();
 	}
 
 }
