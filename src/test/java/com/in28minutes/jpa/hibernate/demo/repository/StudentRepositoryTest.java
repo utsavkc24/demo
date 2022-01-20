@@ -2,7 +2,10 @@ package com.in28minutes.jpa.hibernate.demo.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import javax.persistence.EntityManager;
+
 import com.in28minutes.jpa.hibernate.demo.DemoApplication;
+import com.in28minutes.jpa.hibernate.demo.entity.Passport;
 import com.in28minutes.jpa.hibernate.demo.entity.Student;
 
 import org.junit.jupiter.api.Test;
@@ -15,8 +18,12 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest(classes = DemoApplication.class)
 class StudentRepositoryTest {
 	private Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+
 	@Autowired
-	StudentRepository studentRepository;
+	StudentRepository repository;
+
+	@Autowired
+	EntityManager entityManager;
 
 	@Test
 	void contextLoads() {
@@ -25,8 +32,17 @@ class StudentRepositoryTest {
 
 	@Test
 	@Transactional
-	void retrieveStudentAndPassport() {
-		Student student = studentRepository.findById(2L);
-		LOGGER.info("student passport number -> {}", student.getPassport());
+	void retrieveStudentAndThenPassport() {
+		Student student = entityManager.find(Student.class, 2L);
+		LOGGER.info("student -> {}", student);
+		LOGGER.info("student's passport number -> {}", student.getPassport());
+	}
+
+	@Test
+	@Transactional
+	void retrievePassportAndThenStudent() {
+		Passport passport = entityManager.find(Passport.class, 40001L);
+		LOGGER.info("passport -> {}", passport);
+		LOGGER.info("student's name -> {}", passport.getStudent());
 	}
 }
