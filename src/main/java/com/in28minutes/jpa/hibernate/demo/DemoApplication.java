@@ -1,5 +1,9 @@
 package com.in28minutes.jpa.hibernate.demo;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.in28minutes.jpa.hibernate.demo.entity.Review;
 import com.in28minutes.jpa.hibernate.demo.repository.CourseRepository;
 import com.in28minutes.jpa.hibernate.demo.repository.StudentRepository;
 
@@ -35,7 +39,12 @@ public class DemoApplication implements CommandLineRunner {
 		// courseRepository.playWithEntityManager();
 
 		// studentRepository.saveStudentWithPassport();
-		courseRepository.addHardcodedReviewForCourses();
+		// courseRepository.addHardcodedReviewForCourses();
+		List<Review> reviews = new ArrayList<>();
+		reviews.add(new Review("5", "Very Good"));
+		reviews.add(new Review("1", "Not so good"));
+
+		courseRepository.addReviewForCourses(10003L, reviews);
 	}
 
 }

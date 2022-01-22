@@ -1,5 +1,7 @@
 package com.in28minutes.jpa.hibernate.demo.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import com.in28minutes.jpa.hibernate.demo.entity.Course;
@@ -53,5 +55,16 @@ public class CourseRepository {
 
         entityManager.persist(review1);
         entityManager.persist(review2);
+    }
+
+    public void addReviewForCourses(Long courseId, List<Review> reviews) {
+        Course course = entityManager.find(Course.class, courseId);
+
+        for (Review review : reviews) {
+            course.addReviews(review);
+            review.setCourse(course);
+            entityManager.persist(review);
+        }
+
     }
 }
