@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public abstract class Employee {
     @Id
     @GeneratedValue
-    private String id;
+    private Long id;
 
     @Column(nullable = false)
     private String name;
@@ -21,7 +21,7 @@ public abstract class Employee {
         this.name = name;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 

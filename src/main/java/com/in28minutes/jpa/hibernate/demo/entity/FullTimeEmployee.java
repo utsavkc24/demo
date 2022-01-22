@@ -2,6 +2,9 @@ package com.in28minutes.jpa.hibernate.demo.entity;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Entity;
+
+@Entity
 public class FullTimeEmployee extends Employee {
     private BigDecimal salary;
 

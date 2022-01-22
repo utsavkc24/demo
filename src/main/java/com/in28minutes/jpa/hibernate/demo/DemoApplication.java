@@ -1,8 +1,11 @@
 package com.in28minutes.jpa.hibernate.demo;
 
-import com.in28minutes.jpa.hibernate.demo.entity.Course;
-import com.in28minutes.jpa.hibernate.demo.entity.Student;
+import java.math.BigDecimal;
+
+import com.in28minutes.jpa.hibernate.demo.entity.FullTimeEmployee;
+import com.in28minutes.jpa.hibernate.demo.entity.PartTimeEmployee;
 import com.in28minutes.jpa.hibernate.demo.repository.CourseRepository;
+import com.in28minutes.jpa.hibernate.demo.repository.EmployeeRepository;
 import com.in28minutes.jpa.hibernate.demo.repository.StudentRepository;
 
 import org.slf4j.Logger;
@@ -21,6 +24,9 @@ public class DemoApplication implements CommandLineRunner {
 
 	@Autowired
 	StudentRepository studentRepository;
+
+	@Autowired
+	EmployeeRepository employeeRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -45,7 +51,13 @@ public class DemoApplication implements CommandLineRunner {
 
 		// courseRepository.addReviewForCourses(10003L, reviews);
 
-		studentRepository.insertStudentAndCourse(new Student("Jonas"), new Course("Time travel"));
+		// studentRepository.insertStudentAndCourse(new Student("Jonas"), new
+		// Course("Time travel"));
+
+		employeeRepository.insert(new PartTimeEmployee("Foo", new BigDecimal("50")));
+		employeeRepository.insert(new FullTimeEmployee("Bar", new BigDecimal("10000")));
+
+		LOGGER.info("All employees -> {}", employeeRepository.retrieveAllEmployees());
 	}
 
 }
