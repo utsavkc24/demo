@@ -1,10 +1,9 @@
 package com.in28minutes.jpa.hibernate.demo.repository;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import javax.persistence.EntityManager;
 
 import com.in28minutes.jpa.hibernate.demo.DemoApplication;
+import com.in28minutes.jpa.hibernate.demo.entity.Course;
 import com.in28minutes.jpa.hibernate.demo.entity.Passport;
 import com.in28minutes.jpa.hibernate.demo.entity.Student;
 
@@ -44,5 +43,21 @@ class StudentRepositoryTest {
 		Passport passport = entityManager.find(Passport.class, 40001L);
 		LOGGER.info("passport -> {}", passport);
 		LOGGER.info("student's name -> {}", passport.getStudent());
+	}
+
+	@Test
+	@Transactional
+	public void retrieveStudentAndTheCourse() {
+		Student student = entityManager.find(Student.class, 20001L);
+		LOGGER.info("student -> {}", student);
+		LOGGER.info("Student's courses -> {}", student.getCourses());
+	}
+
+	@Test
+	@Transactional
+	public void retrieveCourseAndTheStudent() {
+		Course course = entityManager.find(Course.class, 10001L);
+		LOGGER.info("Course -> {}", course);
+		LOGGER.info("Students -> {}", course.getStudents());
 	}
 }

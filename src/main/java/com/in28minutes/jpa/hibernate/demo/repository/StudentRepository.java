@@ -2,6 +2,7 @@ package com.in28minutes.jpa.hibernate.demo.repository;
 
 import javax.persistence.EntityManager;
 
+import com.in28minutes.jpa.hibernate.demo.entity.Course;
 import com.in28minutes.jpa.hibernate.demo.entity.Passport;
 import com.in28minutes.jpa.hibernate.demo.entity.Student;
 
@@ -40,6 +41,14 @@ public class StudentRepository {
         Student student = new Student("Bruce Wayne");
         student.setPassport(passport);
         entityManager.persist(student);
+    }
+
+    public void insertStudentAndCourse(Student student, Course course) {
+        student.addCourse(course);
+        course.addStudent(student);
+
+        entityManager.persist(student);
+        entityManager.persist(course);
     }
 
 }
