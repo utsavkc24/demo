@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
@@ -24,6 +26,9 @@ public class Student {
     private Passport passport;
 
     @ManyToMany
+    @JoinTable(name = "STUDENT_COURSE", // setting the name of the table
+            joinColumns = @JoinColumn(name = "STUDENT_ID"), // setting the column name
+            inverseJoinColumns = @JoinColumn(name = "COURSE_ID")) // setting the column name
     private List<Course> courses = new ArrayList<>();
 
     protected Student() {
