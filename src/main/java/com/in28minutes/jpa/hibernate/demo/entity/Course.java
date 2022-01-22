@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -30,6 +31,9 @@ public class Course {
 
     @OneToMany(mappedBy = "course")
     private List<Review> reviews = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "courses") // This shows Student is the owning side.
+    private List<Student> students = new ArrayList<>();
 
     @UpdateTimestamp
     private LocalDateTime lastUpdatedTime;
@@ -65,6 +69,14 @@ public class Course {
 
     public void removeReviews(Review review) {
         this.reviews.remove(review);
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void addStudent(Student student) {
+        this.students.add(student);
     }
 
     @Override
