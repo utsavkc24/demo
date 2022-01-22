@@ -1,11 +1,14 @@
 package com.in28minutes.jpa.hibernate.demo.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.NamedQueries;
@@ -24,6 +27,9 @@ public class Course {
 
     @Column(nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "course")
+    private List<Review> reviews = new ArrayList<>();
 
     @UpdateTimestamp
     private LocalDateTime lastUpdatedTime;
@@ -47,6 +53,18 @@ public class Course {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void addReviews(Review review) {
+        this.reviews.add(review);
+    }
+
+    public void removeReviews(Review review) {
+        this.reviews.remove(review);
     }
 
     @Override

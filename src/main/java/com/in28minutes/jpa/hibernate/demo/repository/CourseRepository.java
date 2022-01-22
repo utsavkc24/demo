@@ -3,6 +3,7 @@ package com.in28minutes.jpa.hibernate.demo.repository;
 import javax.persistence.EntityManager;
 
 import com.in28minutes.jpa.hibernate.demo.entity.Course;
+import com.in28minutes.jpa.hibernate.demo.entity.Review;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -37,5 +38,20 @@ public class CourseRepository {
 
         Course course = findById(10001L);
         course.setName("History - Updated");
+    }
+
+    public void addHardcodedReviewForCourses() {
+        Course course = entityManager.find(Course.class, 10003L);
+
+        Review review1 = new Review("5", "Very Good");
+        Review review2 = new Review("1", "Not so good");
+
+        course.addReviews(review1);
+        review1.setCourse(course);
+        course.addReviews(review2);
+        review2.setCourse(course);
+
+        entityManager.persist(review1);
+        entityManager.persist(review2);
     }
 }
