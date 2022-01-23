@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+src/main/java/com/in28minutes/jpa/hibernate/demo/entity/Course.java
+src/main/resources/data.sql
