@@ -81,4 +81,36 @@ class JPQLTest {
 		LOGGER.info("Select s from Student s where s.passport.number like '%1234%' -> {}", resultList);
 	}
 
+	// Natual Join
+	@Test
+	public void join() {
+		Query query = em.createQuery("select c,s from Course c JOIN c.students s");
+		List<Object[]> resultList = query.getResultList();
+		LOGGER.info("result list size -> {}", resultList.size());
+		for (Object[] result : resultList) {
+			LOGGER.info("Course{} Student{}", result[0], result[1]);
+		}
+	}
+
+	// LEFT Join
+	@Test
+	public void left_outer_join() {
+		Query query = em.createQuery("select c,s from Course c LEFT JOIN c.students s");
+		List<Object[]> resultList = query.getResultList();
+		LOGGER.info("result list size -> {}", resultList.size());
+		for (Object[] result : resultList) {
+			LOGGER.info("Course{} Student{}", result[0], result[1]);
+		}
+	}
+
+	// CROSS Join
+	@Test
+	public void cross_join() {
+		Query query = em.createQuery("select c,s from Course c, Student s");
+		List<Object[]> resultList = query.getResultList();
+		LOGGER.info("result list size -> {}", resultList.size());
+		for (Object[] result : resultList) {
+			LOGGER.info("Course{} Student{}", result[0], result[1]);
+		}
+	}
 }
