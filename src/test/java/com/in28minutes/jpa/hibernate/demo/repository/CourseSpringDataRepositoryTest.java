@@ -12,6 +12,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 @SpringBootTest(classes = DemoApplication.class)
@@ -51,5 +54,14 @@ public class CourseSpringDataRepositoryTest {
                                                           // have same name
         LOGGER.info("Courses in desc order -> {}", courseSpringDataRepository.findAll(sort));
 
+        // Implement Pagination
+        PageRequest pageRequest = PageRequest.of(0, 3); // Create a page request of 3 page per size.
+
+        Page<Course> firstPageRequest = courseSpringDataRepository.findAll(pageRequest); // Results for first page.
+        LOGGER.info("First page -> {}", firstPageRequest.getContent()); // Display the result using .getContent();
+
+        Pageable secondPageable = firstPageRequest.nextPageable();
+        Page<Course> secondPage = courseSpringDataRepository.findAll(secondPageable); // Results for second page.
+        LOGGER.info("Second page -> {}", secondPage.getContent()); // Display the result using .getContent();
     }
 }
