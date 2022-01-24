@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
@@ -33,6 +35,7 @@ public class Course {
     private List<Review> reviews = new ArrayList<>();
 
     @ManyToMany(mappedBy = "courses") // This shows Student is the owning side.
+    @JsonIgnore // This is use to ignore this attribute while exposing the resources
     private List<Student> students = new ArrayList<>();
 
     @UpdateTimestamp
