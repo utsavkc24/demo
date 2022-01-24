@@ -63,5 +63,8 @@ public class CourseSpringDataRepositoryTest {
         Pageable secondPageable = firstPageRequest.nextPageable();
         Page<Course> secondPage = courseSpringDataRepository.findAll(secondPageable); // Results for second page.
         LOGGER.info("Second page -> {}", secondPage.getContent()); // Display the result using .getContent();
+
+        // Using custom method defined by us
+        LOGGER.info("Course comes from custom method-> {}", courseSpringDataRepository.findByName("History"));
     }
 }
