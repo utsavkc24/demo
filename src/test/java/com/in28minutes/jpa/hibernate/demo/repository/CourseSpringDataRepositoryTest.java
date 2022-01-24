@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Sort;
 
 @SpringBootTest(classes = DemoApplication.class)
 public class CourseSpringDataRepositoryTest {
@@ -42,6 +43,13 @@ public class CourseSpringDataRepositoryTest {
 
         // Find no. of rows
         LOGGER.info("No of courses -> {}", courseSpringDataRepository.count());
+
+        // Get the result in sorted form
+        // Create sort criteria
+        Sort sort = Sort.by(Sort.Direction.DESC, "name"); // Sort sort = Sort.by(Sort.Direction.DESC, "name").and(); you
+                                                          // can use this 'and()' for secondary sorting - for eg they
+                                                          // have same name
+        LOGGER.info("Courses in desc order -> {}", courseSpringDataRepository.findAll(sort));
 
     }
 }
