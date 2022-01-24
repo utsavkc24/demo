@@ -16,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest(classes = DemoApplication.class)
 public class CourseSpringDataRepositoryTest {
@@ -66,5 +67,16 @@ public class CourseSpringDataRepositoryTest {
 
         // Using custom method defined by us
         LOGGER.info("Course comes from custom method-> {}", courseSpringDataRepository.findByName("History"));
+    }
+
+    @Test
+    @Transactional
+    public void firstLevelCachingDemo() {
+        Optional<Course> course = courseSpringDataRepository.findById(10001L);// Query is fired
+        LOGGER.info("course is retrieved first time {}", course.get());
+
+        // course is retrieved second time by using default first level cache
+        Optional<Course> course1 = courseSpringDataRepository.findById(10001L);// Query is not fired
+        LOGGER.info("course is retrieved second time by using default first level cache {}", course1.get());
     }
 }
