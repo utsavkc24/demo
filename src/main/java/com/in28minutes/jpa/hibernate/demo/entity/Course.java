@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,6 +24,7 @@ import org.hibernate.annotations.UpdateTimestamp;
         @NamedQuery(name = "get_all_courses", query = "select c from Course c"),
         @NamedQuery(name = "get_all_courses_with_where_clause", query = "select c from Course c where name = 'History'")
 })
+@Cacheable
 public class Course {
     @Id
     @GeneratedValue
