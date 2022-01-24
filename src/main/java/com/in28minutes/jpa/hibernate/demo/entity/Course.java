@@ -17,7 +17,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
 
 @Entity
 @NamedQueries(value = {
@@ -25,6 +27,8 @@ import org.hibernate.annotations.UpdateTimestamp;
         @NamedQuery(name = "get_all_courses_with_where_clause", query = "select c from Course c where name = 'History'")
 })
 @Cacheable
+@SQLDelete(sql = "Update course set is_deleted=true where id=?")
+@Where(clause = "is_deleted = false")
 public class Course {
     @Id
     @GeneratedValue
@@ -44,6 +48,8 @@ public class Course {
     private LocalDateTime lastUpdatedTime;
     @CreationTimestamp
     private LocalDateTime createdTime;
+
+    private boolean isDeleted;
 
     protected Course() {
     }

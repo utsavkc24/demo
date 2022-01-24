@@ -1,8 +1,8 @@
-insert into course(id, name, last_updated_time, created_time) values(10001, 'History', sysdate(), sysdate());
-insert into course(id, name, last_updated_time, created_time) values(10002, 'Chemistry', sysdate(), sysdate());
-insert into course(id, name, last_updated_time, created_time) values(10003, 'Maths', sysdate(), sysdate());
-insert into course(id, name, last_updated_time, created_time) values(10004, 'Physics', sysdate(), sysdate());
-insert into course(id, name, last_updated_time, created_time) values(10005, 'English', sysdate(), sysdate());
+insert into course(id, name, last_updated_time, created_time, is_deleted) values(10001, 'History', sysdate(), sysdate(), false);
+insert into course(id, name, last_updated_time, created_time, is_deleted) values(10002, 'Chemistry', sysdate(), sysdate(), false);
+insert into course(id, name, last_updated_time, created_time, is_deleted) values(10003, 'Maths', sysdate(), sysdate(), false);
+insert into course(id, name, last_updated_time, created_time, is_deleted) values(10004, 'Physics', sysdate(), sysdate(), false);
+insert into course(id, name, last_updated_time, created_time, is_deleted) values(10005, 'English', sysdate(), sysdate(), false);
 
 insert into passport(id,number)
 values(40001,'E123456');
