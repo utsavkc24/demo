@@ -1,6 +1,5 @@
 package com.in28minutes.jpa.hibernate.demo.repository;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
@@ -26,5 +25,23 @@ public class CourseSpringDataRepositoryTest {
         Optional<Course> courseOptional = courseSpringDataRepository.findById(10001L);
         assertTrue(courseOptional.isPresent());
         LOGGER.info("checking course exists or not {}", courseOptional.isPresent());
+    }
+
+    @Test
+    public void playWithSpringDataJpa() {
+        // Save
+        Course course = new Course("AI");
+        courseSpringDataRepository.save(course);
+
+        // Update
+        course.setName("AI - Updated");
+        courseSpringDataRepository.save(course);
+
+        // Find all
+        LOGGER.info("Courses -> {}", courseSpringDataRepository.findAll());
+
+        // Find no. of rows
+        LOGGER.info("No of courses -> {}", courseSpringDataRepository.count());
+
     }
 }
