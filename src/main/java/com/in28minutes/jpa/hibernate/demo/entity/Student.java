@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,6 +31,9 @@ public class Student {
             joinColumns = @JoinColumn(name = "STUDENT_ID"), // setting the column name
             inverseJoinColumns = @JoinColumn(name = "COURSE_ID")) // setting the column name
     private List<Course> courses = new ArrayList<>();
+
+    @Embedded
+    private Address address;
 
     protected Student() {
     }
@@ -64,6 +68,14 @@ public class Student {
 
     public void addCourse(Course course) {
         this.courses.add(course);
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override
