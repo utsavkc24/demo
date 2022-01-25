@@ -37,6 +37,7 @@ class CourseRepositoryTest {
 		assertEquals("History", course.getName());
 	}
 
+	// We will perform soft delete functionality on this method.
 	@Test
 	@DirtiesContext
 	void deleteById_basic() {
