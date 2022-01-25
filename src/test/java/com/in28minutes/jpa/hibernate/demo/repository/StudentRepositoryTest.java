@@ -3,6 +3,7 @@ package com.in28minutes.jpa.hibernate.demo.repository;
 import javax.persistence.EntityManager;
 
 import com.in28minutes.jpa.hibernate.demo.DemoApplication;
+import com.in28minutes.jpa.hibernate.demo.entity.Address;
 import com.in28minutes.jpa.hibernate.demo.entity.Course;
 import com.in28minutes.jpa.hibernate.demo.entity.Passport;
 import com.in28minutes.jpa.hibernate.demo.entity.Student;
@@ -59,5 +60,15 @@ class StudentRepositoryTest {
 		Course course = entityManager.find(Course.class, 10001L);
 		LOGGER.info("Course -> {}", course);
 		LOGGER.info("Students -> {}", course.getStudents());
+	}
+
+	@Test
+	@Transactional
+	public void setAddressForStudent() {
+		Student student = entityManager.find(Student.class, 20001L);
+		student.setAddress(new Address("D105", "Street 2", "Gotham"));
+
+		LOGGER.info("student -> {}", student);
+		LOGGER.info("Student's courses -> {}", student.getCourses());
 	}
 }
