@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 
 import com.in28minutes.jpa.hibernate.demo.entity.Course;
 import com.in28minutes.jpa.hibernate.demo.entity.Review;
+import com.in28minutes.jpa.hibernate.demo.entity.ReviewRating;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -45,8 +46,8 @@ public class CourseRepository {
     public void addHardcodedReviewForCourses() {
         Course course = entityManager.find(Course.class, 10003L);
 
-        Review review1 = new Review("5", "Very Good");
-        Review review2 = new Review("1", "Not so good");
+        Review review1 = new Review(ReviewRating.FIVE, "Very Good");
+        Review review2 = new Review(ReviewRating.ONE, "Not so good");
 
         course.addReviews(review1);
         review1.setCourse(course);
