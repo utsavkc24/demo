@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class EmployeeRepository {
 
     @Autowired
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     public void insert(Employee employee) {
         entityManager.persist(employee);

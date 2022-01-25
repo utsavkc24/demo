@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 @Entity
 @NamedQueries(value = {
         @NamedQuery(name = "get_all_courses", query = "select c from Course c"),
+        @NamedQuery(name = "query_get_all_courses_join_fetch", query = "Select  c  From Course c JOIN FETCH c.students s"),
         @NamedQuery(name = "get_all_courses_with_where_clause", query = "select c from Course c where name = 'History'")
 })
 @Cacheable

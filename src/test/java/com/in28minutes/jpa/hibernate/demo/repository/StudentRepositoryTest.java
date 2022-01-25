@@ -20,10 +20,10 @@ class StudentRepositoryTest {
 	private Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
-	StudentRepository repository;
+	private StudentRepository repository;
 
 	@Autowired
-	EntityManager entityManager;
+	private EntityManager entityManager;
 
 	@Test
 	void contextLoads() {

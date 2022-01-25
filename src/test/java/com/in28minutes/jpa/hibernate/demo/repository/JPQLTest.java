@@ -20,7 +20,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class JPQLTest {
 	private Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 	@Autowired
-	EntityManager em;
+	private EntityManager em;
 
 	@Test
 	void contextLoads() {

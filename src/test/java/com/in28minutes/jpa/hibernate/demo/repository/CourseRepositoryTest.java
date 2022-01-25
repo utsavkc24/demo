@@ -21,10 +21,10 @@ import org.springframework.transaction.annotation.Transactional;
 class CourseRepositoryTest {
 	private Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 	@Autowired
-	CourseRepository courseRepository;
+	private CourseRepository courseRepository;
 
 	@Autowired
-	EntityManager entityManager;
+	private EntityManager entityManager;
 
 	@Test
 	void contextLoads() {

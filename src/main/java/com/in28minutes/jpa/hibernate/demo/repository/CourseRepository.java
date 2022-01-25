@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class CourseRepository {
 
     @Autowired
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     public Course findById(long id) {
         return entityManager.find(Course.class, id);

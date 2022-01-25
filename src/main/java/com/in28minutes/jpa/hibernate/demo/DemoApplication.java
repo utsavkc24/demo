@@ -20,13 +20,13 @@ public class DemoApplication implements CommandLineRunner {
 	private Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
-	CourseRepository courseRepository;
+	private CourseRepository courseRepository;
 
 	@Autowired
-	StudentRepository studentRepository;
+	private StudentRepository studentRepository;
 
 	@Autowired
-	EmployeeRepository employeeRepository;
+	private EmployeeRepository employeeRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
